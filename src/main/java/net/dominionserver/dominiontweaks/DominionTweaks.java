@@ -1,6 +1,7 @@
 package net.dominionserver.dominiontweaks;
 
-import org.bukkit.Bukkit;
+import net.dominionserver.dominiontweaks.Listeners.DamageListener;
+import net.dominionserver.dominiontweaks.Listeners.HangingBreakListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class DominionTweaks extends JavaPlugin {

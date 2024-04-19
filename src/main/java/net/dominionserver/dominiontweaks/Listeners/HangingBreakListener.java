@@ -1,5 +1,6 @@
-package net.dominionserver.dominiontweaks;
+package net.dominionserver.dominiontweaks.Listeners;
 
+import net.dominionserver.dominiontweaks.DominionTweaks;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
