@@ -1,9 +1,0 @@
-name: DominionTweaks
-version: '${version}'
-main: net.dominionserver.dominiontweaks.DominionTweaks
-api-version: '1.20'
-commands:
-  nethertunnel:
-    alias:
-      - tunnel
-      - nt
