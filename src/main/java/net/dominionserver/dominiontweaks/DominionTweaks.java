@@ -1,29 +1,51 @@
 package net.dominionserver.dominiontweaks;
 
+import net.dominionserver.dominiontweaks.Commands.NetherTunnel;
 import net.dominionserver.dominiontweaks.Listeners.DamageListener;
 import net.dominionserver.dominiontweaks.Listeners.HangingBreakListener;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public final class DominionTweaks extends JavaPlugin {
+    public static DominionTweaks instance;
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        saveResource("config.yml",false);
-        //Boolean BlockPlayerFireworkDamage = getConfig().getBoolean("BlockPlayerFireworkDamage");
-        //Boolean BlockNametaggedFireworkDamage = getConfig().getBoolean("BlockNametaggedFireworkDamage");
-        //Boolean ChannelingDuringRain = getConfig().getBoolean("ChannelingDuringRain");
-        //Float ChannelingChance = getConfig().getFloatList(ChannelingChance);
-        //Boolean BlockSkeletonItemFrames = getConfig().getBoolean("BlockSkeletonItemFrames");
-        //Boolean BlockSkeletonArmorStand = getConfig().getBoolean("BlockSkeletonArmorStand");
-        getServer().getPluginManager().registerEvents(new DamageListener(this), this);
-        if (this.getConfig().getBoolean("BlockSkeletonPaintings")){
-            getServer().getPluginManager().registerEvents(new HangingBreakListener(this), this);
-        }
+        instance = this;
+
+        saveDefaultConfig();
+        registerListeners();
+        registerCommands();
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        saveConfig();
+    }
+
+    private void registerListeners(){
+        getServer().getPluginManager().registerEvents(new DamageListener(this), this);
+        if (this.getConfig().getBoolean("BlockSkeletonPaintings", true)){
+            getServer().getPluginManager().registerEvents(new HangingBreakListener(), this);
+        }
+    }
+    private void reloadListeners(){
+        HandlerList.unregisterAll(this);
+        registerListeners();
+    }
+
+    public void _reloadConfig(){
+        this.reloadConfig();
+        this.reloadListeners();
+    }
+
+    public void registerCommands(){
+        Objects.requireNonNull(getCommand("nethertunnel")).setExecutor(new NetherTunnel());
     }
 }

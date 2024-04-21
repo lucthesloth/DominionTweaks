@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 
 public class DamageListener implements Listener {
-    private DominionTweaks plugin;
+    private final DominionTweaks plugin;
 
 
 

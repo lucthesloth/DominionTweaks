@@ -5,28 +5,23 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
 
 
 public class HangingBreakListener implements Listener {
-    private DominionTweaks plugin;
-
-
-
-    public HangingBreakListener(DominionTweaks instance){
-        this.plugin = instance;
+    public HangingBreakListener(){
     }
 
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onHangingBreakByEntity(HangingBreakByEntityEvent event) {
-        Entity cause = event.getRemover();
-        if (cause.getType() == EntityType.SKELETON) {
+        if (event.getCause() != HangingBreakEvent.RemoveCause.ENTITY) return;
+
+        if (event.getRemover().getType() == EntityType.SKELETON) {
             event.setCancelled(true);
-            Bukkit.broadcastMessage("SAFE PAINTINGS!");
-            Bukkit.broadcastMessage("SAFE PAINTINGS!");
-            Bukkit.broadcastMessage("SAFE PAINTINGS!");
         }
 
     }

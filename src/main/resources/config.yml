@@ -11,3 +11,21 @@ BlockSkeletonItemFrames: true
 BlockSkeletonArmorStand: true
 # Prevent Skeletons From Shooting Empty Item Frames and Paintings
 BlockSkeletonPaintings: true
+
+Tunnels:
+  # Radius as in protection radius for the nether hubs.
+  Radius: 30
+  Length: 1250
+  Coordinates:
+    - name: "1.14"
+      x: 0
+      z: 0
+    - name: "1.18"
+      x: 0
+      z: 2500
+    - name: "1.19"
+      x: 2500
+      z: 0
+    - name: "1.20"
+      x: 2500
+      z: 2500
