@@ -21,7 +21,7 @@ public class EntitySpawnListener implements Listener {
         if (e.getEntityType() != EntityType.WANDERING_TRADER) return;
 
         if (e.getEntity().getNearbyEntities(50, 50, 50).stream().noneMatch(t -> t instanceof Player && !t.hasPermission("dominion.alt"))){
-            List<Player> onlineNonAlts = Bukkit.getOnlinePlayers().stream().filter(t -> !t.hasPermission("dominion.alt")).collect(Collectors.toList());
+            List<Player> onlineNonAlts = Bukkit.getOnlinePlayers().stream().filter(t -> !t.hasPermission("dominion.alt") && t.getWorld() == e.getLocation().getWorld()).collect(Collectors.toList());
             if (onlineNonAlts.isEmpty()) return;
             Collections.shuffle(onlineNonAlts);
             e.getEntity().teleport(Utils.getSurfaceLocationWithinRadius(onlineNonAlts.get(0).getLocation(), 50));
