@@ -1,5 +1,6 @@
 package net.dominionserver.dominiontweaks;
 
+import net.dominionserver.dominiontweaks.Commands.Completers.NetherTunnelCompleter;
 import net.dominionserver.dominiontweaks.Commands.NetherTunnel;
 import net.dominionserver.dominiontweaks.Listeners.DamageListener;
 import net.dominionserver.dominiontweaks.Listeners.HangingBreakListener;
@@ -47,5 +48,6 @@ public final class DominionTweaks extends JavaPlugin {
 
     public void registerCommands(){
         Objects.requireNonNull(getCommand("nethertunnel")).setExecutor(new NetherTunnel());
+        Objects.requireNonNull(getCommand("nethertunnel")).setTabCompleter(new NetherTunnelCompleter());
     }
 }
